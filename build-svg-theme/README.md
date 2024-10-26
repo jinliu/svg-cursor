@@ -52,7 +52,7 @@ git clone https://github.com/jinliu/svg-cursor.git
 git clone https://github.com/vinceliuice/WhiteSur-cursors.git
 ```
 
-1. Run the following command in the terminal:
+1. Run this tool.
 
 ```bash
 cd WhiteSur-cursors
