@@ -41,3 +41,7 @@ svg-theme-to-xcursor.py --output-dir=cursors --svg-dir=cursors_scalable --sizes=
 ```
 
 1. It's done. You might need to select another cursor theme and then switch back to see the changes.
+
+## Debugging hotspots
+
+You can use the `--debug-hotspots` option to draw a cross at the hotspot of the cursor. Then you can use apps like `xcursor-viewer` or `gimp` to inspect the cursor. If you find the hotspot is off, you can adjust it in the `metadata.json` file and rerun this tool. Note that the hotspot can be a fractional number. E.g. you can place it at the center of a line or the tip of an arrow. It will be rounded to the nearest pixel when used.

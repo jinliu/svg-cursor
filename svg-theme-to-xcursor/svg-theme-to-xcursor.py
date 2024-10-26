@@ -18,6 +18,7 @@ def main():
     parser.add_argument('--svg-dir', required=True)
     parser.add_argument('--sizes', required=True)
     parser.add_argument('--scales', required=True)
+    parser.add_argument('--debug-hotspot', action='store_true')
     args = parser.parse_args()
 
     sizes = list(map(int, args.sizes.split(',')))
@@ -76,6 +77,8 @@ def main():
                         scale = size / nominal_size
                         image_size = svg_size * scale
                         aligned_image_size = (image_size.width() + (alignment - image_size.width() % alignment) % alignment, image_size.width() + (alignment - image_size.width() % alignment) % alignment)
+                        hotspot_x_scaled = math.floor(hotspot_x * scale + 0.01)
+                        hotspot_y_scaled = math.floor(hotspot_y * scale + 0.01)
 
                         image = QImage(aligned_image_size[0], aligned_image_size[1], QImage.Format_ARGB32)
                         image.fill(0)
@@ -83,13 +86,14 @@ def main():
                         painter = QPainter()
                         painter.begin(image)
                         svg_renderer.render(painter, QRectF(QPointF(0, 0), image_size))
+                        if args.debug_hotspot:
+                            painter.setPen("red")
+                            painter.drawLine(hotspot_x_scaled, 0, hotspot_x_scaled, aligned_image_size[1])
+                            painter.drawLine(0, hotspot_y_scaled, aligned_image_size[0], hotspot_y_scaled)
                         painter.end()
 
                         pngname = Path(str(size)) / Path(filename).with_suffix(".png")
                         image.save(str(shape_tmp_dir / pngname))
-
-                        hotspot_x_scaled = math.floor(hotspot_x * scale + 0.01)
-                        hotspot_y_scaled = math.floor(hotspot_y * scale + 0.01)
 
                         config_file.write(f"{size} {hotspot_x_scaled} {hotspot_y_scaled} {pngname} {delay}\n")
 
