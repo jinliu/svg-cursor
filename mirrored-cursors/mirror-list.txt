@@ -1,0 +1,17 @@
+alias
+color-picker
+context-menu
+copy
+default
+dnd-move
+dnd-no-drop
+draft
+help
+no-drop
+openhand
+pencil
+pointer
+progress
+wait
+zoom-in
+zoom-out
