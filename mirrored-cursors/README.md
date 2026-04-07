@@ -22,5 +22,5 @@ The `mirror` script should work with any SVG cursor theme. To build the mirrored
 cd mirrored-cursors
 rm -r breeze_cursors.mirrored
 mkdir -p breeze_cursors.mirrored/cursors_scalable
-./mirror breeze_cursors/cursors_scalable breeze_cursors.mirrored/cursors_scalable --mirror-list=mirror-list.txt
+./mirror breeze_cursors/cursors_scalable breeze_cursors.mirrored/cursors_scalable mirror-list.txt
 ```
